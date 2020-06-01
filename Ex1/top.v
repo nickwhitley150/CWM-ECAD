@@ -32,5 +32,11 @@ module logicalunit(
     wire   out;
          
       //Todo: add you logic here
+wire[3:0] ab={a,b};
+assign out = (ab==2'b00) ? func[0]:
+(ab==2'b01) ? func[1]:
+(ab==2'b10) ? func[2]:
+func[3];
+
 
 endmodule
