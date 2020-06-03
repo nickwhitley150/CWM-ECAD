@@ -38,31 +38,14 @@ module counter(
 
 
     //Todo: add user logic
-always @(posedge clk) begin
-
-if (rst) begin
-counter_out <= 8'b0
+always @(posedge clk) 
+if (rst == 0 )
+	assign counter_out = (enable ==0) ? counter_out:
+	(direction ==1) ? counter_out +1:
+	counter_out -1;
 else
-	begin 
-	if (enable)
-		begin
-		if (direction)
-			begin
-			if (counter_out == 8'b11111111)
-			counter_out <= 8'b0;
-			else
-			counter_out <= counter_out +1;
-			end
-		else
-			begin
-			if (counter_out == 8'b0)
-			counter_out <= 8'b11111111;
-			else
-			counter_out <= counter_out -1;
-			end
-		end
-	end
-end
+	counter_out <= 0;
+
 
       
 endmodule
