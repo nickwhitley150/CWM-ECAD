@@ -28,6 +28,23 @@ initial
          #(CLK_PERIOD/2) clk=~clk;
      end
 
+initial 
+	begin
+        #200 
+        if (err==0)
+        	begin
+          		$display("***TEST PASSED! :) ***");
+        		$finish;
+			end
+		else	
+			begin 
+				$display("***Test failed... :(( ***");
+        		$finish;
+			end
+	end
+
+
+
 traffic traffic(clk, red, amber, green);
 
 endmodule
