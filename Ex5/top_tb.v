@@ -28,6 +28,19 @@ initial
          #(CLK_PERIOD/2) clk=~clk;
      end
 
+initial
+begin
+forever begin
+	#10
+	if ((red==0)&&(green==0)&&(amber==0))begin
+	$display ("***FAILLLL! red==%d, amber==%d, green==%d***", red, amber, green);
+	err=1;
+	end
+	else begin
+	err=err;
+	end
+end
+
 initial 
 	begin
         #200 
@@ -45,6 +58,10 @@ initial
 
 
 
-traffic traffic(clk, red, amber, green);
-
+state traffic(
+	.clk (clk),
+	.red (red),
+	.green (green),
+	.amber (amber)
+);
 endmodule
